@@ -23,4 +23,4 @@ jobs:
        run: curl -sSfL https://get.anchore.io/syft | sudo sh -s -- -b /usr/local/bin
 
      - name: Building SBOM
-       run: syft dir: . -o cyclonedx-json > dvja-sbom.json
+       run: syft dir . -o cyclonedx-json > dvja-sbom.json
