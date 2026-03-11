@@ -1,4 +1,4 @@
-name: SBOM generation
+name: syft Marketplace SBOM generation
 on:
   workflow_dispatch
 jobs:
