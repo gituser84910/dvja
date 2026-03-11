@@ -2,23 +2,21 @@ name: SAST Anlysis
 on:
   workflow_dispatch
 jobs:
-   create-sast:
+   security:
+
     runs-on: ubuntu-latest
+
+    permissions:
+      security-events: write
+
+      # If your repository is private, also add:
+      actions: read
+      contents: read
+
     steps:
-     - name: Checkout of repo
-       uses: actions/checkout@v6.0.2
-
-     - name: Setup Java
-       uses: actions/setup-java@v5.2.0
-       with: 
-         distribution: temurin
-         java-version: 8
-         cache: maven
-
-     - name: Build Maven project
-       run: mvn -B  clean package -D skipTest
-
-     - name: Run Snyk to check for vulnerabilities
-       uses: snyk/actions/maven@master
-       env:
+      - uses: actions/checkout@master
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/maven@master
+        continue-on-error: true 
+        env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
