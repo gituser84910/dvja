@@ -34,4 +34,4 @@ jobs:
        run: curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
 
      - name: Scanning Syft SBOM
-       run: grype sbom: dvja-sbom.json
+       run: grype sbom: ./dvja-sbom.json
