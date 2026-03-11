@@ -16,7 +16,13 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/maven@master
+        uses: snyk/actions/maven@master > snyk-report.txt
         continue-on-error: true 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          
+      - name: Upload a Scan Report Artifact
+        uses: actions/upload-artifact@v7.0.0
+        with:
+         name: snyk-report
+         path: snyk-report.txt
