@@ -20,9 +20,3 @@ jobs:
         continue-on-error: true 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-          
-      - name: Upload a Scan Report Artifact
-        uses: actions/upload-artifact@v7.0.0
-        with:
-         name: snyk-report
-         path: snyk-report.txt
