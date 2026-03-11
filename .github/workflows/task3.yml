@@ -34,5 +34,11 @@ jobs:
        run: curl -sSfL https://get.anchore.io/grype | sudo sh -s -- -b /usr/local/bin
 
      - name: Scanning Syft SBOM
-       run: grype dvja-sbom.json
+       run: grype dvja-sbom.json > vuln-report-sbom.json
+
+     - name: Upload a Scan Report Artifact
+       uses: actions/upload-artifact@v7.0.0
+       with:
+        name: scan-report
+        path: vuln-report-sbom.json
 
